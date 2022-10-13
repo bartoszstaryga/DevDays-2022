@@ -1,0 +1,8 @@
+label: Dog fact
+form:
+  implementationClass: info.magnolia.ui.javascript.form.FormViewWithChangeListener
+  properties:
+    fact:
+      label: Fact
+      $type: javascriptField
+      fieldScript: /DevDays-2022/webresources/fieldScripts/dogFact.html

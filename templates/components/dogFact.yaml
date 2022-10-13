@@ -1,0 +1,4 @@
+title: Dog fact
+dialog: DevDays-2022:components/dogFact
+templateScript: /DevDays-2022/templates/components/dogFact.ftl
+renderType: freemarker

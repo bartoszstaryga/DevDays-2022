@@ -1,0 +1,8 @@
+label: Color picker
+form:
+  implementationClass: info.magnolia.ui.javascript.form.FormViewWithChangeListener
+  properties:
+    color:
+      label: Color
+      $type: javascriptField
+      fieldScript: /DevDays-2022/webresources/fieldScripts/colorPicker.html

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  </head>
+  <body>
+    <h1>Dog fact</h1>
+    <h2>Current fact</h2>
+    <p id="value"></p>
+    <h2>New fact</h2>
+    <p id="new-value"></p>
+    <button id="get-another-fact">Get another fact</button>
+    <button id="save">Save</button>
+    <script>
+      let value = document.getElementById('value');
+      let newValue = document.getElementById('new-value');
+      let getAnotherFact = document.getElementById('get-another-fact');
+      let save = document.getElementById('save');
+      let correlationId;
+
+      // function changeHeight() {
+      //   parent.window.postMessage(
+      //     {
+      //       action: 'changeHeight',
+      //       correlationId,
+      //       value: document.documentElement.offsetHeight,
+      //     },
+      //     '*'
+      //   );
+      // }
+
+      function getFact() {
+        fetch(
+          'https://author-ins.sales-demo-prod.eu-playground.magnolia-platform.com/api/proxy?url=https://dog-api.kinduff.com/api/facts'
+        )
+          .then((res) => res.json())
+          .then((json) => {
+            newValue.textContent = json.facts[0];
+
+            // changeHeight();
+          });
+      }
+
+      window.addEventListener(
+        'message',
+        function (event) {
+          if (event.data.action === 'init') {
+            correlationId = event.data.correlationId;
+            value.textContent = event.data.state.value || event.data.state.defaultValue || '';
+          }
+
+          // console.log(event.data);
+
+          // if (event.data.action === 'change') {
+          //   value.textContent = event.data.state.value || event.data.state.defaultValue || '';
+
+          //   changeHeight();
+          // }
+
+          // window.frameElement.style.position = 'fixed';
+          // window.frameElement.style.top = '0';
+          // window.frameElement.style.left = '0';
+          // window.frameElement.style.width = '100vw';
+          // window.frameElement.style.height = '100vh';
+          // window.frameElement.style.background = 'yellow';
+          // window.frameElement.style.zIndex = '10';
+
+          // if (event.data.action === 'change') {
+          //   const dialogEl = window.frameElement.closest('.popupContent');
+          //   const commitEl = dialogEl.querySelector('.commit');
+
+          //   commitEl.click();
+          // }
+        },
+        false
+      );
+
+      getAnotherFact.addEventListener('click', getFact);
+
+      save.addEventListener('click', function () {
+        parent.window.postMessage({ action: 'changeValue', correlationId, value: newValue.textContent }, '*');
+      });
+
+      getFact();
+    </script>
+  </body>
+</html>

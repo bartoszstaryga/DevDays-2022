@@ -1,0 +1,4 @@
+title: Color picker
+dialog: DevDays-2022:components/colorPicker
+templateScript: /DevDays-2022/templates/components/colorPicker.ftl
+renderType: freemarker

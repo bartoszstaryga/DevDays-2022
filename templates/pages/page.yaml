@@ -1,0 +1,10 @@
+title: DevDays 2022
+templateScript: /DevDays-2022/templates/pages/page.ftl
+renderType: freemarker
+areas:
+  main:
+    availableComponents:
+      colorPicker:
+        id: DevDays-2022:components/colorPicker
+      dogFact:
+        id: DevDays-2022:components/dogFact
